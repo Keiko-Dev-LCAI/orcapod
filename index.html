@@ -7,91 +7,149 @@
 <meta name="description" content="All KeikoDev apps on Lightchain AI — music, video, security, AI tools, and more.">
 <style>
 :root {
-  --bg: #0d1117;
-  --bg2: #161b22;
-  --bg3: #1c2128;
-  --border: #30363d;
-  --text: #e6edf3;
-  --muted: #8b949e;
-  --accent: #00B4D8;
-  --accent-dim: rgba(0,180,216,0.12);
+  --bg: #0a0f1a;
+  --bg2: #111827;
+  --card: #151d2e;
+  --card-hover: #1a2438;
+  --border: rgba(255,255,255,0.09);
+  --text: #eef4fb;
+  --muted: #8fa3bc;
+  --accent: #00d4ff;
+  --accent-dim: rgba(0,212,255,0.14);
+  --shadow: 0 10px 32px rgba(0,0,0,0.35);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:radial-gradient(ellipse 120% 80% at 50% -20%, rgba(0,212,255,0.08), transparent 55%), var(--bg);
+  color:var(--text);
+  font-size:18px;
+  line-height:1.5;
+  min-height:100vh;
+}
 
-.header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.logo{font-size:22px;font-weight:800;display:flex;align-items:center;gap:8px}
-.logo-sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:4px}
-.lc-badge{font-size:12px;color:var(--accent);background:var(--accent-dim);border:1px solid rgba(0,180,216,0.3);padding:3px 12px;border-radius:20px;font-weight:600}
+.header{
+  background:rgba(17,24,39,0.92);
+  border-bottom:1px solid var(--border);
+  padding:0 clamp(20px,4vw,48px);
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.logo{font-size:28px;font-weight:800;display:flex;align-items:center;gap:10px}
+.logo-sub{font-size:15px;color:var(--muted);font-weight:500}
+.lc-badge{
+  font-size:14px;color:var(--accent);background:var(--accent-dim);
+  border:1px solid rgba(0,212,255,0.35);padding:8px 16px;border-radius:999px;font-weight:700;
+}
 
-.hero{text-align:center;padding:14px 24px 10px;flex-shrink:0}
-.hero h1{font-size:28px;font-weight:900;line-height:1.1}
+.hero{text-align:center;padding:36px 24px 28px}
+.hero h1{font-size:clamp(32px,4vw,46px);font-weight:900;line-height:1.1;letter-spacing:-0.02em}
 .hero h1 span{color:var(--accent)}
-.hero-stats{display:flex;gap:28px;justify-content:center;margin-top:8px}
-.stat-num{font-size:18px;font-weight:800;color:var(--accent)}
-.stat-label{font-size:12px;color:var(--muted);margin-left:4px}
+.hero p{font-size:18px;color:var(--muted);max-width:720px;margin:14px auto 0;line-height:1.6}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.stat-num{font-size:28px;font-weight:800;color:var(--accent)}
+.stat-label{font-size:15px;color:var(--muted);margin-left:6px}
 
-.apps-section{flex:1;padding:10px 24px 10px;display:flex;flex-direction:column;min-height:0}
-.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;text-align:center;flex-shrink:0}
+.apps-wrap{
+  padding:0 clamp(16px,3vw,40px) 48px;
+  max-width:1760px;
+  margin:0 auto;
+}
+.section-label{
+  font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--muted);margin-bottom:20px;text-align:center;
+}
 
 .apps-grid{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
-  grid-template-rows:repeat(3,1fr);
-  gap:12px;
-  flex:1;
-  min-height:0;
+  grid-template-columns:repeat(6, minmax(0, 1fr));
+  gap:18px;
 }
 
 .app-card{
-  background:var(--bg2);
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:16px 14px 12px;
-  transition:all 0.18s;
+  border-radius:16px;
+  padding:22px 20px 18px;
+  min-height:210px;
+  transition:transform .18s, border-color .18s, background .18s, box-shadow .18s;
   text-decoration:none;
   display:flex;
   flex-direction:column;
-  align-items:flex-start;
-  gap:6px;
-  overflow:hidden;
-  min-height:0;
+  gap:10px;
+  cursor:pointer;
 }
-.app-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,180,216,0.15);background:var(--bg3)}
-
-.app-icon{font-size:30px;line-height:1;flex-shrink:0}
-.app-name{font-size:17px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-0.01em;flex-shrink:0}
-.app-tagline{font-size:13px;color:var(--muted);line-height:1.4;flex:1;overflow:hidden}
-
-.app-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,180,216,0.25);flex-shrink:0}
-.app-tag.health{background:rgba(46,160,67,0.12);color:#3fb950;border-color:rgba(46,160,67,0.25)}
-.app-tag.finance{background:rgba(247,127,0,0.12);color:#f79f00;border-color:rgba(247,127,0,0.25)}
-.app-tag.security{background:rgba(230,57,70,0.12);color:#ff6b6b;border-color:rgba(230,57,70,0.25)}
-.app-tag.nft{background:rgba(139,92,246,0.12);color:#a78bfa;border-color:rgba(139,92,246,0.25)}
-.app-tag.media{background:rgba(232,75,138,0.12);color:#e84b8a;border-color:rgba(232,75,138,0.25)}
-.app-tag.ai{background:rgba(168,85,247,0.12);color:#c084fc;border-color:rgba(168,85,247,0.25)}
-
-.open-btn{margin-top:auto;font-size:13px;font-weight:800;color:#000;background:var(--accent);padding:7px 0;border-radius:8px;width:100%;text-align:center;transition:background 0.15s;flex-shrink:0}
-.app-card:hover .open-btn{background:#33c9e8}
-
-/* Tablet — 3 cols, scroll ok */
-@media(max-width:1100px){
-  html,body{height:auto;overflow:auto}
-  .apps-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:unset}
-  .apps-section{flex:unset;padding:16px 20px 40px}
-  .hero{padding:24px 24px 16px}
-  .hero h1{font-size:32px}
+.app-card:hover{
+  border-color:rgba(0,212,255,0.55);
+  background:var(--card-hover);
+  transform:translateY(-3px);
+  box-shadow:var(--shadow), 0 0 0 1px rgba(0,212,255,0.12);
 }
-/* Phone */
-@media(max-width:640px){
-  .apps-grid{grid-template-columns:repeat(2,1fr)}
-  .header{height:52px;padding:0 16px}
-  .logo{font-size:18px}
+
+.app-icon{font-size:44px;line-height:1}
+.app-name{font-size:22px;font-weight:800;color:var(--text);line-height:1.15;letter-spacing:-0.02em}
+.app-tagline{font-size:15px;color:var(--muted);line-height:1.55;flex:1}
+
+.app-tag{
+  display:inline-block;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;
+  background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,212,255,0.28);
+  width:fit-content;
+}
+.app-tag.health{background:rgba(46,160,67,0.14);color:#4ade80;border-color:rgba(46,160,67,0.3)}
+.app-tag.finance{background:rgba(247,127,0,0.14);color:#fbbf24;border-color:rgba(247,127,0,0.3)}
+.app-tag.security{background:rgba(255,68,68,0.14);color:#ff7b7b;border-color:rgba(255,68,68,0.3)}
+.app-tag.nft{background:rgba(167,139,250,0.14);color:#c4b5fd;border-color:rgba(167,139,250,0.3)}
+.app-tag.media{background:rgba(232,75,138,0.14);color:#f472b6;border-color:rgba(232,75,138,0.3)}
+.app-tag.ai{background:rgba(192,132,252,0.14);color:#d8b4fe;border-color:rgba(192,132,252,0.3)}
+.app-tag.tools{background:rgba(0,212,255,0.12);color:var(--accent);border-color:rgba(0,212,255,0.28)}
+
+.open-btn{
+  margin-top:auto;
+  font-size:15px;font-weight:800;color:#001018;
+  background:var(--accent);
+  padding:11px 0;border-radius:10px;width:100%;text-align:center;
+  transition:background .15s, transform .15s;
+}
+.app-card:hover .open-btn{background:#5ce4ff}
+
+.footer{
+  border-top:1px solid var(--border);
+  padding:28px 24px 36px;
+  text-align:center;
+  color:var(--muted);
+  font-size:15px;
+}
+.footer a{color:var(--accent);text-decoration:none;font-weight:600}
+.footer a:hover{text-decoration:underline}
+
+/* 6 → 4 → 3 → 2 → 1 as screen narrows */
+@media(max-width:1400px){
+  .apps-grid{grid-template-columns:repeat(4, minmax(0, 1fr))}
+}
+@media(max-width:1024px){
+  .apps-grid{grid-template-columns:repeat(3, minmax(0, 1fr))}
+  .app-card{min-height:200px}
+}
+@media(max-width:720px){
+  .apps-grid{grid-template-columns:repeat(2, minmax(0, 1fr));gap:14px}
+  .header{height:60px}
+  .logo{font-size:22px}
+  .hero{padding:28px 16px 20px}
+  .app-name{font-size:20px}
+  .app-tagline{font-size:14px}
+}
+@media(max-width:480px){
+  .apps-grid{grid-template-columns:1fr}
 }
 </style>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#00B4D8">
+<meta name="theme-color" content="#00d4ff">
 <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
@@ -103,6 +161,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <section class="hero">
   <h1>Apps built on <span>Lightchain AI</span></h1>
+  <p>Music, video, security, health, finance, and AI tools — decentralized where it matters. Free tiers on every app.</p>
   <div class="hero-stats">
     <div><span class="stat-num">18</span><span class="stat-label">Live Apps</span></div>
     <div><span class="stat-num">Free</span><span class="stat-label">Tiers Available</span></div>
@@ -110,48 +169,48 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   </div>
 </section>
 
-<section class="apps-section">
+<div class="apps-wrap">
   <div class="section-label">All Apps — July 2026</div>
   <div class="apps-grid">
 
     <a class="app-card" href="https://lighttube.win" target="_blank" rel="noopener">
       <div class="app-icon">🎬</div>
       <div class="app-name">LightTube</div>
-      <div class="app-tagline">Decentralized video on-chain forever</div>
+      <div class="app-tagline">Decentralized video stored on-chain forever</div>
       <span class="app-tag media">Video</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open LightTube</div>
     </a>
 
     <a class="app-card" href="https://lighttunes.win" target="_blank" rel="noopener">
       <div class="app-icon">🎵</div>
       <div class="app-name">LightTunes</div>
-      <div class="app-tagline">Blockchain music — tip in LCAI</div>
+      <div class="app-tagline">Blockchain music — artists tip in LCAI</div>
       <span class="app-tag media">Music</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open LightTunes</div>
     </a>
 
     <a class="app-card" href="https://lightchat.chat" target="_blank" rel="noopener">
       <div class="app-icon">💬</div>
       <div class="app-name">LightChat</div>
-      <div class="app-tagline">Wallet-native AI voice chat</div>
+      <div class="app-tagline">Wallet-native social and AI voice chat</div>
       <span class="app-tag tools">Social</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open LightChat</div>
     </a>
 
     <a class="app-card" href="https://binai.win" target="_blank" rel="noopener">
       <div class="app-icon">💜</div>
       <div class="app-name">Binai</div>
-      <div class="app-tagline">Personal AI — wallet + PIN login</div>
+      <div class="app-tagline">Personal AI assistant — wallet + PIN login</div>
       <span class="app-tag ai">AI Assistant</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open Binai</div>
     </a>
 
     <a class="app-card" href="https://orcaguard.win" target="_blank" rel="noopener">
       <div class="app-icon">🛡️</div>
       <div class="app-name">OrcaGuard</div>
-      <div class="app-tagline">Crypto safety — contracts &amp; URLs</div>
+      <div class="app-tagline">Crypto safety — contracts, URLs, wallet audit</div>
       <span class="app-tag security">Security</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open OrcaGuard</div>
     </a>
 
     <a class="app-card" href="https://myice.win" target="_blank" rel="noopener">
@@ -159,7 +218,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="app-name">MyICE</div>
       <div class="app-tagline">Emergency health ID for first responders</div>
       <span class="app-tag health">Health</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open MyICE</div>
     </a>
 
     <a class="app-card" href="https://orcamail.ai" target="_blank" rel="noopener">
@@ -167,99 +226,104 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="app-name">OrcaMail</div>
       <div class="app-tagline">Encrypted wallet-to-wallet messaging</div>
       <span class="app-tag tools">Messaging</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open OrcaMail</div>
     </a>
 
     <a class="app-card" href="https://orcafiles.ai" target="_blank" rel="noopener">
       <div class="app-icon">📁</div>
       <div class="app-name">OrcaFiles</div>
-      <div class="app-tagline">File workspace with AI chat</div>
+      <div class="app-tagline">File workspace with AI document chat</div>
       <span class="app-tag tools">Storage</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open OrcaFiles</div>
     </a>
 
     <a class="app-card" href="https://orcavault.win" target="_blank" rel="noopener">
       <div class="app-icon">🗄️</div>
       <div class="app-name">OrcaVault</div>
-      <div class="app-tagline">Lightchain archives &amp; AV storage</div>
+      <div class="app-tagline">Lightchain archives and AV storage</div>
       <span class="app-tag tools">Archives</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open OrcaVault</div>
     </a>
 
     <a class="app-card" href="https://orcamint.xyz" target="_blank" rel="noopener">
       <div class="app-icon">🎨</div>
       <div class="app-name">OrcaMint</div>
-      <div class="app-tagline">Mint, buy &amp; sell NFTs on Lightchain</div>
+      <div class="app-tagline">Mint, buy, and sell NFTs on Lightchain</div>
       <span class="app-tag nft">NFT</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open OrcaMint</div>
     </a>
 
     <a class="app-card" href="https://orcalearn.ai" target="_blank" rel="noopener">
       <div class="app-icon">📚</div>
       <div class="app-name">OrcaLearn</div>
-      <div class="app-tagline">AI learning — math &amp; lesson plans</div>
+      <div class="app-tagline">AI learning — math help and lesson plans</div>
       <span class="app-tag tools">Education</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open OrcaLearn</div>
     </a>
 
     <a class="app-card" href="https://lightdex.win" target="_blank" rel="noopener">
       <div class="app-icon">🔁</div>
       <div class="app-name">LightDex</div>
-      <div class="app-tagline">Swap tokens on Lightchain</div>
+      <div class="app-tagline">Swap tokens on Lightchain AMM</div>
       <span class="app-tag finance">DEX</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open LightDex</div>
     </a>
 
     <a class="app-card" href="https://keiko-dev-lcai.github.io/topten/" target="_blank" rel="noopener">
       <div class="app-icon">🔥</div>
       <div class="app-name">Top Ten Presales</div>
-      <div class="app-tagline">AI-analyzed crypto presale picks</div>
+      <div class="app-tagline">AI-analyzed crypto presale rankings</div>
       <span class="app-tag finance">Crypto</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open Top Ten</div>
     </a>
 
     <a class="app-card" href="https://lightweather.win" target="_blank" rel="noopener">
       <div class="app-icon">⛅</div>
       <div class="app-name">LightWeather</div>
-      <div class="app-tagline">AI-enhanced weather &amp; forecasts</div>
+      <div class="app-tagline">AI-enhanced weather and forecasts</div>
       <span class="app-tag tools">Weather</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open LightWeather</div>
     </a>
 
     <a class="app-card" href="https://smartcontractexplainer.xyz" target="_blank" rel="noopener">
       <div class="app-icon">📜</div>
       <div class="app-name">SC Explainer</div>
-      <div class="app-tagline">Plain-English contract analysis</div>
+      <div class="app-tagline">Plain-English smart contract analysis</div>
       <span class="app-tag security">Security</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open SC Explainer</div>
     </a>
 
     <a class="app-card" href="https://emojisandstickers.xyz" target="_blank" rel="noopener">
       <div class="app-icon">😄</div>
       <div class="app-name">Emojis &amp; Stickers</div>
-      <div class="app-tagline">AI emoji generator + Discord bot</div>
+      <div class="app-tagline">AI emoji generator and Discord bot</div>
       <span class="app-tag nft">Creative</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open Emojis</div>
     </a>
 
     <a class="app-card" href="https://orcanode.win" target="_blank" rel="noopener">
       <div class="app-icon">⚡</div>
       <div class="app-name">OrcaNode</div>
-      <div class="app-tagline">Run a worker node — earn LCAI</div>
+      <div class="app-tagline">Run a worker node and earn LCAI</div>
       <span class="app-tag tools">Node</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open OrcaNode</div>
     </a>
 
     <a class="app-card" href="https://orcaappbuilder.win" target="_blank" rel="noopener">
       <div class="app-icon">🛠️</div>
       <div class="app-name">OrcaAppBuilder</div>
-      <div class="app-tagline">Build &amp; deploy dApps on Lightchain</div>
+      <div class="app-tagline">Build and deploy dApps on Lightchain</div>
       <span class="app-tag tools">Builder</span>
-      <div class="open-btn">Open →</div>
+      <div class="open-btn">Open App Builder</div>
     </a>
 
   </div>
-</section>
+</div>
+
+<footer class="footer">
+  <p>🐬 OrcaPod — All apps by <strong>KeikoDev</strong> on <a href="https://lightchain.ai" target="_blank" rel="noopener">Lightchain AI</a></p>
+  <p style="margin-top:10px">Also listed on <a href="https://hub.lightchain.ai" target="_blank" rel="noopener">hub.lightchain.ai</a></p>
+</footer>
 
 </body>
 </html>
