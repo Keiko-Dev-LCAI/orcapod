@@ -24,59 +24,73 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .logo-sub{font-size:13px;color:var(--muted);font-weight:400;margin-left:4px}
 .lc-badge{font-size:12px;color:var(--accent);background:var(--accent-dim);border:1px solid rgba(0,180,216,0.3);padding:4px 12px;border-radius:20px;font-weight:600}
 
-.hero{text-align:center;padding:80px 24px 60px}
+.hero{text-align:center;padding:60px 24px 48px}
 .hero-inner{max-width:860px;margin:0 auto}
 .hero h1{font-size:48px;font-weight:900;margin-bottom:16px;line-height:1.1}
 .hero h1 span{color:var(--accent)}
-.hero p{font-size:20px;color:var(--muted);max-width:620px;margin:0 auto 40px;line-height:1.6}
+.hero p{font-size:20px;color:var(--muted);max-width:620px;margin:0 auto 36px;line-height:1.6}
 .hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
 .stat{text-align:center}
 .stat-num{font-size:32px;font-weight:800;color:var(--accent)}
 .stat-label{font-size:13px;color:var(--muted);margin-top:4px}
 
-.apps-section{padding:32px 48px 100px}
-.section-label{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:36px;text-align:center}
-.apps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:1280px;margin:0 auto}
-.app-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:32px 34px;transition:all 0.22s;text-decoration:none;display:flex;flex-direction:column;min-height:260px;cursor:pointer}
-.app-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,180,216,0.14);background:var(--bg3)}
-.app-icon{font-size:52px;line-height:1;margin-bottom:18px}
-.app-name{font-size:26px;font-weight:800;color:var(--text);margin-bottom:12px;letter-spacing:-0.02em}
-.app-desc{font-size:17px;color:var(--muted);line-height:1.65;flex:1}
-.app-url{font-size:15px;color:var(--accent);margin-top:16px;font-weight:700}
-.app-card::after{content:'Open →';display:inline-block;margin-top:18px;font-size:15px;font-weight:800;color:#000;background:var(--accent);padding:12px 20px;border-radius:12px;width:fit-content;transition:background 0.15s}
-.app-card:hover::after{background:#33c9e8}
-.app-tag{display:inline-block;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;margin-top:16px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,180,216,0.25)}
+.apps-section{padding:24px 40px 80px}
+.section-label{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:28px;text-align:center}
+
+.apps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;max-width:1400px;margin:0 auto}
+
+.app-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px 20px 20px;
+  transition:all 0.2s;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+  cursor:pointer;
+}
+.app-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,180,216,0.15);background:var(--bg3)}
+
+.app-icon{font-size:40px;line-height:1}
+.app-name{font-size:20px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-0.01em}
+.app-tagline{font-size:14px;color:var(--muted);line-height:1.5;flex:1}
+
+.app-tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(0,180,216,0.25)}
 .app-tag.health{background:rgba(46,160,67,0.12);color:#3fb950;border-color:rgba(46,160,67,0.25)}
 .app-tag.finance{background:rgba(247,127,0,0.12);color:#f79f00;border-color:rgba(247,127,0,0.25)}
 .app-tag.security{background:rgba(230,57,70,0.12);color:#ff6b6b;border-color:rgba(230,57,70,0.25)}
 .app-tag.nft{background:rgba(139,92,246,0.12);color:#a78bfa;border-color:rgba(139,92,246,0.25)}
-.app-tag.tools{background:rgba(0,180,216,0.12);color:var(--accent);border-color:rgba(0,180,216,0.25)}
 .app-tag.media{background:rgba(232,75,138,0.12);color:#e84b8a;border-color:rgba(232,75,138,0.25)}
 .app-tag.ai{background:rgba(168,85,247,0.12);color:#c084fc;border-color:rgba(168,85,247,0.25)}
+
+.open-btn{margin-top:6px;font-size:14px;font-weight:800;color:#000;background:var(--accent);padding:10px 18px;border-radius:10px;width:100%;text-align:center;transition:background 0.15s}
+.app-card:hover .open-btn{background:#33c9e8}
 
 .footer{border-top:1px solid var(--border);padding:32px 40px;text-align:center;color:var(--muted);font-size:13px}
 .footer a{color:var(--accent);text-decoration:none}
 .footer a:hover{text-decoration:underline}
 
-@media(min-width:1500px){
-  .apps-grid{max-width:1400px;gap:32px}
-  .app-card{padding:36px 38px;min-height:280px}
+/* Tablet */
+@media(max-width:1100px){
+  .apps-grid{grid-template-columns:repeat(3,1fr)}
+  .apps-section{padding:20px 24px 60px}
 }
-@media(max-width:900px){
-  .apps-grid{grid-template-columns:1fr;max-width:640px}
-  .apps-section{padding:24px 20px 72px}
-}
-@media(max-width:600px){
-  .header{padding:0 16px;height:60px}
-  .logo{font-size:20px}
-  .hero{padding:44px 16px 36px}
+/* Phone landscape */
+@media(max-width:720px){
+  .apps-grid{grid-template-columns:repeat(2,1fr)}
+  .apps-section{padding:16px 16px 50px}
+  .hero{padding:40px 16px 32px}
   .hero h1{font-size:34px}
   .hero p{font-size:17px}
-  .apps-section{padding:16px 16px 60px}
-  .hero-stats{gap:24px}
-  .app-name{font-size:22px}
-  .app-desc{font-size:16px}
-  .app-icon{font-size:44px}
+}
+/* Phone portrait */
+@media(max-width:440px){
+  .apps-grid{grid-template-columns:1fr}
+  .header{padding:0 16px;height:60px}
+  .logo{font-size:20px}
 }
 </style>
 <link rel="manifest" href="manifest.json">
@@ -109,161 +123,161 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <a class="app-card" href="https://lighttube.win" target="_blank" rel="noopener">
       <div class="app-icon">🎬</div>
       <div class="app-name">LightTube</div>
-      <div class="app-desc">Decentralized video on Lightchain. Upload once, stored on-chain forever. Tip creators, share links, repair missing chunks.</div>
-      <div class="app-url">lighttube.win</div>
+      <div class="app-tagline">Decentralized video stored on-chain forever</div>
       <span class="app-tag media">Video</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://lighttunes.win" target="_blank" rel="noopener">
       <div class="app-icon">🎵</div>
       <div class="app-name">LightTunes</div>
-      <div class="app-desc">Blockchain music platform. Artists upload original tracks, fans tip in LCAI. Public catalog or private songs — you own it forever.</div>
-      <div class="app-url">lighttunes.win</div>
+      <div class="app-tagline">Blockchain music — upload, tip in LCAI</div>
       <span class="app-tag media">Music</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://lightchat.chat" target="_blank" rel="noopener">
       <div class="app-icon">💬</div>
       <div class="app-name">LightChat</div>
-      <div class="app-desc">Wallet-native social layer for the Orca ecosystem. Share apps, posts, and deep links across the Lightchain community.</div>
-      <div class="app-url">lightchat.chat</div>
+      <div class="app-tagline">Wallet-native AI voice chat on Lightchain</div>
       <span class="app-tag tools">Social</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://binai.win" target="_blank" rel="noopener">
       <div class="app-icon">💜</div>
       <div class="app-name">Binai</div>
-      <div class="app-desc">Personal AI assistant on Lightchain. Wallet + PIN login, AIVM-powered chat. Community beta — web live now.</div>
-      <div class="app-url">binai.win</div>
+      <div class="app-tagline">Personal AI assistant — wallet + PIN login</div>
       <span class="app-tag ai">AI Assistant</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcaguard.win" target="_blank" rel="noopener">
       <div class="app-icon">🛡️</div>
       <div class="app-name">OrcaGuard</div>
-      <div class="app-desc">Crypto safety companion — contract checker, URL scanner, wallet audit, breach check. Seven languages. Android app available.</div>
-      <div class="app-url">orcaguard.win</div>
+      <div class="app-tagline">Crypto safety — contracts, URLs, wallets</div>
       <span class="app-tag security">Security</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://myice.win" target="_blank" rel="noopener">
       <div class="app-icon">⚕️</div>
       <div class="app-name">MyICE</div>
-      <div class="app-desc">Personal health vault and emergency medical ID. Conditions, meds, allergies, vitals — one tap for first responders.</div>
-      <div class="app-url">myice.win</div>
+      <div class="app-tagline">Emergency health ID — one tap for first responders</div>
       <span class="app-tag health">Health</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcamail.ai" target="_blank" rel="noopener">
       <div class="app-icon">✉️</div>
       <div class="app-name">OrcaMail</div>
-      <div class="app-desc">Encrypted wallet-to-wallet messaging on Lightchain. ECIES encryption — no server reads your mail.</div>
-      <div class="app-url">orcamail.ai</div>
+      <div class="app-tagline">Encrypted wallet-to-wallet messaging</div>
       <span class="app-tag tools">Messaging</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcafiles.ai" target="_blank" rel="noopener">
       <div class="app-icon">📁</div>
       <div class="app-name">OrcaFiles</div>
-      <div class="app-desc">Browser-based file workspace with AI chat. Organize local folders and ask questions about your documents.</div>
-      <div class="app-url">orcafiles.ai</div>
+      <div class="app-tagline">File workspace with AI chat</div>
       <span class="app-tag tools">Storage</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcavault.win" target="_blank" rel="noopener">
       <div class="app-icon">🗄️</div>
       <div class="app-name">OrcaVault</div>
-      <div class="app-desc">Lightchain archives and smart-contract tools. Audiovisual storage, contract explorer, and relay-powered uploads.</div>
-      <div class="app-url">orcavault.win</div>
+      <div class="app-tagline">Lightchain archives and AV storage</div>
       <span class="app-tag tools">Archives</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcamint.xyz" target="_blank" rel="noopener">
       <div class="app-icon">🎨</div>
       <div class="app-name">OrcaMint</div>
-      <div class="app-desc">Mint, buy, and sell NFTs on Lightchain. Real on-chain marketplace with AI support chat.</div>
-      <div class="app-url">orcamint.xyz</div>
+      <div class="app-tagline">Mint, buy &amp; sell NFTs on Lightchain</div>
       <span class="app-tag nft">NFT</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcalearn.ai" target="_blank" rel="noopener">
       <div class="app-icon">📚</div>
       <div class="app-name">OrcaLearn</div>
-      <div class="app-desc">AI learning platform with math quizzes and lesson plans. Fully decentralized on GitHub Pages.</div>
-      <div class="app-url">orcalearn.ai</div>
+      <div class="app-tagline">AI learning — math quizzes &amp; lesson plans</div>
       <span class="app-tag tools">Education</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://lightdex.win" target="_blank" rel="noopener">
       <div class="app-icon">🔁</div>
       <div class="app-name">LightDex</div>
-      <div class="app-desc">Decentralized exchange on Lightchain. Swap tokens with Uniswap V2-style pools.</div>
-      <div class="app-url">lightdex.win</div>
+      <div class="app-tagline">Swap tokens on Lightchain (Uniswap V2)</div>
       <span class="app-tag finance">DEX</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://keiko-dev-lcai.github.io/topten/" target="_blank" rel="noopener">
       <div class="app-icon">🔥</div>
       <div class="app-name">Top Ten Presales</div>
-      <div class="app-desc">AI-analyzed crypto presale picks. Top opportunities refreshed with AIVM analysis.</div>
-      <div class="app-url">keiko-dev-lcai.github.io/topten</div>
+      <div class="app-tagline">AI-analyzed crypto presale picks</div>
       <span class="app-tag finance">Crypto</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://lightview.win" target="_blank" rel="noopener">
       <div class="app-icon">📊</div>
       <div class="app-name">LightView</div>
-      <div class="app-desc">Operations monitoring for manufacturers and warehouses. Alerts, QuickBooks, scanned POs — blockchain-backed audit trail.</div>
-      <div class="app-url">lightview.win</div>
+      <div class="app-tagline">Operations monitoring for manufacturers</div>
       <span class="app-tag tools">Business</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://lightweather.win" target="_blank" rel="noopener">
       <div class="app-icon">⛅</div>
       <div class="app-name">LightWeather</div>
-      <div class="app-desc">AI-enhanced weather with forecasts, alerts, and premium features. Built for Lightchain users worldwide.</div>
-      <div class="app-url">lightweather.win</div>
+      <div class="app-tagline">AI-enhanced weather and forecasts</div>
       <span class="app-tag tools">Weather</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://smartcontractexplainer.xyz" target="_blank" rel="noopener">
       <div class="app-icon">📜</div>
-      <div class="app-name">Smart Contract Explainer</div>
-      <div class="app-desc">Paste any contract address — get a plain-English explanation. Compare contracts, illustrate, check wallets.</div>
-      <div class="app-url">smartcontractexplainer.xyz</div>
+      <div class="app-name">SC Explainer</div>
+      <div class="app-tagline">Plain-English smart contract analysis</div>
       <span class="app-tag security">Security</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://emojisandstickers.xyz" target="_blank" rel="noopener">
       <div class="app-icon">😄</div>
       <div class="app-name">Emojis &amp; Stickers</div>
-      <div class="app-desc">AI emoji and sticker generator. Website plus OrcaArt Discord bot — /create, /emoji, /sticker.</div>
-      <div class="app-url">emojisandstickers.xyz</div>
+      <div class="app-tagline">AI emoji generator + OrcaArt Discord bot</div>
       <span class="app-tag nft">Creative</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcanode.win" target="_blank" rel="noopener">
       <div class="app-icon">⚡</div>
       <div class="app-name">OrcaNode</div>
-      <div class="app-desc">Run a Lightchain AI worker node. Step-by-step wizard — earn LCAI contributing compute to the network.</div>
-      <div class="app-url">orcanode.win</div>
+      <div class="app-tagline">Run a worker node — earn LCAI</div>
       <span class="app-tag tools">Node</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://orcaappbuilder.win" target="_blank" rel="noopener">
       <div class="app-icon">🛠️</div>
       <div class="app-name">OrcaAppBuilder</div>
-      <div class="app-desc">Build and deploy dApps on Lightchain. Templates, AI-assisted code, and hub submission helpers.</div>
-      <div class="app-url">orcaappbuilder.win</div>
+      <div class="app-tagline">Build and deploy dApps on Lightchain</div>
       <span class="app-tag tools">Builder</span>
+      <div class="open-btn">Open →</div>
     </a>
 
     <a class="app-card" href="https://lightmall.win" target="_blank" rel="noopener">
       <div class="app-icon">🛍️</div>
       <div class="app-name">LightMall</div>
-      <div class="app-desc">Lightchain marketplace — domain registered, storefront coming soon.</div>
-      <div class="app-url">lightmall.win</div>
+      <div class="app-tagline">Lightchain marketplace — coming soon</div>
       <span class="app-tag finance">Commerce</span>
+      <div class="open-btn">Open →</div>
     </a>
 
   </div>
