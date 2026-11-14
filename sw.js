@@ -1,41 +1,19 @@
-/* Orca PWA service worker — cache shell for faster reloads on mobile */
-const CACHE = 'orca-shell-v1';
-const PRECACHE = ['./', './index.html', './manifest.json'];
-
-self.addEventListener('install', function (e) {
-  e.waitUntil(
-    caches.open(CACHE).then(function (c) {
-      return c.addAll(PRECACHE);
-    }).catch(function () {})
-  );
+/* Maintenance gate. Do not cache or serve the app shell. */
+self.addEventListener('install', function () {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', function (e) {
-  e.waitUntil(
-    caches.keys().then(function (keys) {
-      return Promise.all(
-        keys.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); })
-      );
-    }).then(function () { return self.clients.claim(); })
-  );
+self.addEventListener('activate', function (event) {
+  event.waitUntil((async function () {
+    var keys = await caches.keys();
+    await Promise.all(keys.map(function (key) { return caches.delete(key); }));
+    var windows = await self.clients.matchAll({ type: 'window' });
+    await Promise.all(windows.map(function (client) { return client.navigate(client.url); }));
+    await self.registration.unregister();
+  })());
 });
 
-self.addEventListener('fetch', function (e) {
-  if (e.request.method !== 'GET') return;
-  var url = new URL(e.request.url);
-  if (url.origin !== self.location.origin) return;
-
-  e.respondWith(
-    caches.match(e.request).then(function (cached) {
-      var network = fetch(e.request).then(function (res) {
-        if (res && res.ok) {
-          var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
-        }
-        return res;
-      }).catch(function () { return cached; });
-      return cached || network;
-    })
-  );
+self.addEventListener('fetch', function (event) {
+  if (event.request.mode !== 'navigate') return;
+  event.respondWith(fetch(event.request, { cache: 'no-store' }));
 });
